@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <title>CindyJS Demo</title>
+  <script src="https://cindyjs.org/dist/latest/Cindy.js"></script>
+  <style> #CSCanvas { width: 700px; height: 420px; border: 1px solid #ccc; } </style>
+</head>
+<body>
+  <h1>CindyJS 데모</h1>
+  <div id="CSCanvas"></div>
+
+  <script>
+    // CindyJS 초기화
+    CindyJS({
+      canvasname: "CSCanvas",
+      scripts: "cs*",
+      geometry: [
+        { name:"k", kind:"Slider", pos:[-9, 8], min:0.5, max:5, step:0.1, initial:1 }
+      ]
+    });
+  </script>
+
+  <!-- CindyScript: 그래프/애니메이션 -->
+  <script id="csdraw" type="text/x-cindyscript">
+    color(0.8,0.8,0.8); draw((-12,0),(12,0)); draw((0,-8),(0,8));
+    k = k.x;
+    color(0,0,1); plot(sin(k*x), start->-12, stop->12);
+    t = seconds(); xp = -10 + (t % 20); yp = si
