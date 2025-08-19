@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>해바라기씨.cdy</title>
+    <style type="text/css">
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+        #CSConsole {
+            background-color: #FAFAFA;
+            border-top: 1px solid #333333;
+            bottom: 0px;
+            height: 200px;
+            overflow-y: scroll;
+            position: fixed;
+            width: 100%;
+        }
+    </style>
+    <script type="text/javascript" src="https://cindyjs.org/dist/v0.8/Cindy.js"></script>
+<script id="csdraw" type="text/x-cindyscript">
+// CindyScript
+round(x) := floor(x + 0.5); // round 함수 정의
+
+n = round(100 * |B, E|);
+if(|C, D| == 0, 
+  d = 0, 
+  d = 0.01 * (|D, F| / |D, C| - 0.5)
+);
+ang = (137.508°) + d;
+
+forall(1..n, i,
+  w = ang * i;
+  r = sqrt(i) * 0.2;
+  p = (sin(w), cos(w)) * r;
+  draw(p, color -> (1, 0.8, 0), size -> 3);
+);
+
+drawtext([5, 4], "n = " + n, color -> (0, 0, 0));
+drawtext([5, 3], "d = " + d, color -> (0, 0, 0));
+</script>
+    <script type="text/javascript">
+var cdy = CindyJS({
+  scripts: "cs*",
+  defaultAppearance: {
+    dimDependent: 0.7,
+    fontFamily: "sans-serif",
+    lineSize: 1,
+    pointSize: 5.0,
+    textsize: 12.0
+  },
+  angleUnit: "°",
+  geometry: [
+    {name: "A", type: "Free", pos: [3.04, -4.0, -0.5], color: [1.0, 0.0, 0.0], labeled: true},
+    {name: "B", type: "Free", pos: [-0.52, -4.0, -0.5], color: [1.0, 0.0, 0.0], labeled: true},
+    {name: "C", type: "Free", pos: [3.94, -4.0, -0.66], color: [1.0, 0.0, 0.0], labeled: true},
+    {name: "D", type: "Free", pos: [-0.68, -4.0, -0.66], color: [1.0, 0.0, 0.0], labeled: true},
+    {name: "a", type: "Segment", color: [0.0, 0.0, 1.0], args: ["A", "B"], labeled: true},
+    {name: "b", type: "Segment", color: [0.0, 0.0, 1.0], args: ["C", "D"], labeled: true},
+    {name: "E", type: "PointOnSegment", args: ["a"], pos: [0.32, -4.0, -0.5], color: [1.0, 0.0, 0.0], labeled: true},
+    {name: "F", type: "PointOnSegment", args: ["b"], pos: [1.0, -4.0, -0.66], color: [1.0, 0.0, 0.0], labeled: true}
+  ],
+  ports: [{
+    width: 680,
+    height: 320,
+    id: "CSCanvas",
+    transform: [{visibleRect: [-9.06, 9.34, 18.14, -3.46]}],
+    grid: 1.0,
+    background: "rgb(168,176,192)"
+  }],
+  csconsole: false,
+  cinderella: {build: 2091, version: [3, 0, 2091]}
+});
+    </script>
+</head>
+<body>
+    <div id="CSCanvas"></div>
+</body>
+</html>
